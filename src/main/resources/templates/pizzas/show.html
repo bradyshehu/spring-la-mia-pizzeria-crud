@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      th:href="@{/webjars/bootstrap/5.3.8/css/bootstrap.min.css}"
+    />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <title>La mia pizzeria</title>
+  </head>
+  <body>
+    <header class="pb-3">
+      <div th:insert="pizzas/index :: navbar"></div>
+    </header>
+    <main>
+      <div class="container text-center" th:object="${pizza}">
+        <h3 class="py-3" th:text="*{name}"></h3>
+        <img class="py-3" th:src="*{img}" alt="*{name}" />
+        <ul>
+          <li class="py-3" th:text="*{description}">
+          </li>
+          <li class="py-3" th:text="*{price} + '€'"></li>
+          </li>
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>
