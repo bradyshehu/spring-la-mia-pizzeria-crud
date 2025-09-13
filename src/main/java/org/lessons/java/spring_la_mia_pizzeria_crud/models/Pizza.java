@@ -9,8 +9,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
+// import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "pizzas")
@@ -19,18 +21,22 @@ public class Pizza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
+    @NotBlank(message = "Questo campo non puó essere lasciato incompleto")
+    @Size(max=50, message = "Il massimo numero di caratteri per il nome é 50")
     private String name;
 
 
     @Lob
+    @Size(max=500, message = "Il massimo numero di caratteri per la descrizione é 500")
+    @NotBlank(message = "Questo campo non puó essere lasciato incompleto")
     private String description;
 
-    @NotBlank
+    @NotBlank(message = "Questo campo non puó essere lasciato incompleto")
+    @Size(max=150, message = "Il massimo numero di caratteri per l''url' dell''immagine é 150")
     private String img;
 
-    @NotNull
-    @DecimalMin(value = "4.99")
+    @NotNull(message = "Questo campo non puó essere lasciato incompleto")
+    @DecimalMin(value = "4.99", message = "Il prezzo minimo per una pizza é di 5€") 
     private BigDecimal price;
 
     // GETTERS
